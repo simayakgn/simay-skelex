@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.IO;
+using UnityEngine.SceneManagement;
 
 public class EditOCRManager : MonoBehaviour
 {
@@ -10,54 +9,22 @@ public class EditOCRManager : MonoBehaviour
     void Start()
     {
         string path = PlayerPrefs.GetString("LastImagePath", "");
-        Debug.Log("OCR sahnesine gelen yol: " + path);
-
-        if (!string.IsNullOrEmpty(path) && File.Exists(path))
+        if (!string.IsNullOrEmpty(path))
         {
-            // Dosya sisteminden Texture2D yükle
-            Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(File.ReadAllBytes(path));
-
-            Debug.Log("Yüklenen texture null mu? " + (texture == null));
+            Texture2D texture = NativeGallery.LoadImageAtPath(path, 2048);
             if (texture != null)
             {
                 previewImage.texture = texture;
 
-                // AspectRatioFitter ile oranı koru
                 AspectRatioFitter fitter = previewImage.GetComponent<AspectRatioFitter>();
                 if (fitter != null)
-                {
-                    float aspect = (float)texture.width / texture.height;
-                    fitter.aspectRatio = aspect;
-                }
+                    fitter.aspectRatio = (float)texture.width / texture.height;
             }
         }
-        else
-        {
-            Debug.LogWarning("Görsel yolu geçerli değil veya dosya bulunamadı.");
-        }
-    }
-
-    public void ProcessOCR()
-    {
-        Debug.Log("OCR başlatılıyor...");
-        // OCR işlemine burada başlanır (örnek: Tesseract entegrasyonu)
     }
 
     public void GoBackToQuizCreation()
     {
         SceneManager.LoadScene("Quiz_Creation");
-    }
-
-    public void ChooseNewImage()
-    {
-        NativeGallery.GetImageFromGallery((path) =>
-        {
-            if (!string.IsNullOrEmpty(path))
-            {
-                PlayerPrefs.SetString("LastImagePath", path);
-                SceneManager.LoadScene("EditOCRScene");
-            }
-        }, "Yeni bir görsel seç", "image/*");
     }
 }

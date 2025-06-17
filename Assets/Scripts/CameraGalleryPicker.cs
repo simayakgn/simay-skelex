@@ -1,47 +1,22 @@
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CameraGalleryPicker : MonoBehaviour
 {
-    public UnityEngine.Camera captureCamera;
-    public UnityEngine.RenderTexture renderTexture;
-
     public void OpenCamera()
     {
-        if (captureCamera == null || renderTexture == null)
+
+        NativeCamera.TakePicture((path) =>
         {
-            Debug.LogError("Kamera veya RenderTexture atanmamış!");
-            return;
-        }
+            if (string.IsNullOrEmpty(path))
+                return;
 
-        // Mevcut render hedefini kaydet
-        RenderTexture currentRT = RenderTexture.active;
+            // Fotoğraf Android'de geçici DCIM klasöründe olabilir
+            string dst = CopyToPersistent(path);
+            PlayerPrefs.SetString("LastImagePath", dst);
+            SceneManager.LoadScene("EditOCRScene");
 
-        // Kameraya RenderTexture'u hedef olarak ata
-        RenderTexture.active = renderTexture;
-        captureCamera.targetTexture = renderTexture;
-
-        // Kamerayı render et
-        captureCamera.Render();
-
-        // Textur2D oluştur ve render edilmiş görüntüyü içine oku
-        Texture2D image = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
-        image.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        image.Apply();
-
-        // Ayarları eski haline getir
-        RenderTexture.active = currentRT;
-        captureCamera.targetTexture = null;
-
-        // PNG olarak kaydet
-        byte[] bytes = image.EncodeToPNG();
-        string path = Path.Combine(Application.persistentDataPath, "captured_image.png");
-        File.WriteAllBytes(path, bytes);
-        Debug.Log("Image saved to: " + path);
-
-        PlayerPrefs.SetString("LastImagePath", path);
-        SceneManager.LoadScene("EditOCRScene");
+        }, maxSize: 2048);
     }
 
     public void OpenGallery()
@@ -53,6 +28,14 @@ public class CameraGalleryPicker : MonoBehaviour
                 PlayerPrefs.SetString("LastImagePath", path);
                 SceneManager.LoadScene("EditOCRScene");
             }
-        }, "Resim Seç", "image/*");
+        }, "Select an image", "image/*");
+    }
+
+    private string CopyToPersistent(string originalPath)
+    {
+        string filename = System.IO.Path.GetFileName(originalPath);
+        string dstPath = System.IO.Path.Combine(Application.persistentDataPath, filename);
+        System.IO.File.Copy(originalPath, dstPath, true);
+        return dstPath;
     }
 }

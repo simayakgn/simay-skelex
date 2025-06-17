@@ -477,7 +477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00054971525}
+  m_AnchoredPosition: {x: 0, y: 0.000039429586}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &312090181
@@ -1445,6 +1445,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &772687695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 916540006250575174, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+  m_PrefabInstance: {fileID: 5662447335396332237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836022932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,12 +2520,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1553816953 stripped
+--- !u!114 &1553816955
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
-  m_PrefabInstance: {fileID: 5662447335396332237}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 772687695}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8863a7a6a4b384748938a920a03827bf, type: 3}
@@ -2938,7 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d231bce2ac5c48ae9dae063c9beeb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraGalleryPicker: {fileID: 1553816953}
+  cameraGalleryPicker: {fileID: 0}
 --- !u!4 &1816204804
 Transform:
   m_ObjectHideFlags: 0
@@ -3519,7 +3525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+      - m_Target: {fileID: 1553816955}
         m_TargetAssemblyTypeName: CameraGalleryPicker, Assembly-CSharp
         m_MethodName: OpenGallery
         m_Mode: 1
@@ -4132,9 +4138,17 @@ PrefabInstance:
       value: CameraManager
       objectReference: {fileID: 0}
     - target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+      propertyPath: fit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 1190341627}
+    - target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+      propertyPath: cameraPreview
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
       propertyPath: captureCamera
       value: 
@@ -4190,7 +4204,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 916540006250575174, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1553816955}
   m_SourcePrefab: {fileID: 100100000, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
 --- !u!1 &6113238422478652866
 GameObject:
@@ -4479,7 +4496,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4826551756828165020, guid: 2bb6624cb477148d6b67b0523b7ccad2, type: 3}
+      - m_Target: {fileID: 1553816955}
         m_TargetAssemblyTypeName: CameraGalleryPicker, Assembly-CSharp
         m_MethodName: OpenCamera
         m_Mode: 1
