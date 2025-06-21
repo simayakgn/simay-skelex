@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aa84a5ac03f33d4a911a72957d425d1, type: 3}
-  m_Name: QuestionList
+  m_Script: {fileID: 11500000, guid: c1e54b38dfc9a46069620e64350ae56d, type: 3}
+  m_Name: SelectedQuestionsList_SO
   m_EditorClassIdentifier: 
-  questionList:
+  selectedQuestions:
   - {fileID: 11400000, guid: be0320b5ff409164691396d376ab091e, type: 2}
-  - {fileID: 11400000, guid: 9569cf1ea510cd84badb3e8806b48b10, type: 2}
-  - {fileID: 11400000, guid: 6a29092bc15331a49af09cdd01ed4cfe, type: 2}

@@ -1,8 +1,17 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "newQuesitonList", menuName = "QuesitonList")]
 public class QuestionList : ScriptableObject
 {
-    public List<QuizQuestion> questionList;
+    public List<QuizQuestion> questionList = new List<QuizQuestion>();
+
+    public void Clear()
+    {
+        questionList.Clear();
+    }
+
+    public void AddQuestion(QuizQuestion question)
+    {
+        questionList.Add(question);
+    }
 }

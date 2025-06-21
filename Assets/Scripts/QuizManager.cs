@@ -36,7 +36,7 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
-        int questionCount = PlayerPrefs.GetInt("QuestionCount", 5); // varsayýlan 5
+        int questionCount = PlayerPrefs.GetInt("QuestionCount", 5); // varsayï¿½lan 5
         int timeLimit = PlayerPrefs.GetInt("TimeLimit", 30);
         quizTimeRemaining = timeLimit * 60f;
         quizTimerRunning = true;
@@ -92,7 +92,7 @@ public class QuizManager : MonoBehaviour
         questionCountdownRunning = false;
 
         float timeTaken = Time.time - questionStartTime;
-        totalAnswerTime += timeTaken; // Toplam süreye bu sorudaki zamaný ekle
+        totalAnswerTime += timeTaken; // Toplam sï¿½reye bu sorudaki zamanï¿½ ekle
 
         QuizQuestion question = randomizedQuestions[currentQuestionIndex];
         char correct = char.ToUpper(question.CorrectAnswer);
@@ -105,13 +105,13 @@ public class QuizManager : MonoBehaviour
 
         if (selected == correct)
         {
-            feedbackText.text = "Doðru!";
+            feedbackText.text = "Doï¿½ru!";
             trueCounter++;
             totalScore += 10 + bonus;
         }
         else
         {
-            feedbackText.text = $"Yanlýþ! Doðru cevap: {correct}";
+            feedbackText.text = $"Yanlï¿½ï¿½! Doï¿½ru cevap: {correct}";
             falseCounter++;
             totalScore -= 5;
         }
@@ -130,7 +130,7 @@ public class QuizManager : MonoBehaviour
 
     private void EndQuiz()
     {
-        questionText.text = "Test bitti. Doðru sayýn: " + trueCounter + " Yanlýþ sayýn: " + falseCounter;
+        questionText.text = "Test bitti. Doï¿½ru sayï¿½n: " + trueCounter + " Yanlï¿½ï¿½ sayï¿½n: " + falseCounter;
         feedbackText.text = "";
 
         foreach (var btn in optionButtons)
@@ -173,13 +173,13 @@ public class QuizManager : MonoBehaviour
     void UpdateCountdownUI(float time)
     {
         int seconds = Mathf.CeilToInt(time);
-        countdownText.text = $"Bonus Süresi: {seconds} sn";
+        countdownText.text = $"Bonus Sï¿½resi: {seconds} sn";
     }
 
     void TimeUp()
     {
         timerText.text = "00:00";
-        Debug.Log("Süre doldu!");
+        Debug.Log("Sï¿½re doldu!");
         quizTimerRunning = false;
 
         foreach (var btn in optionButtons)
